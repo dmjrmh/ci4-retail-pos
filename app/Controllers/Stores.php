@@ -107,7 +107,7 @@ class Stores extends BaseController
     $storeName = $store['store_name'];
 
     $this->storeModel->delete($id);
-    session()->setFlashdata('message', "Comic deleted successfully");
+    session()->setFlashdata('message', "Store deleted successfully");
     return redirect()->to('/stores')->with('success', 'Store ' . $storeName . ' successfully deleted!');
   }
 }

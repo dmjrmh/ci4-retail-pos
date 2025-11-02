@@ -50,6 +50,13 @@ $routes->post('/products/store', 'Products::store');
 $routes->put('/products/update/(:num)', 'Products::update/$1');
 $routes->post('/products/delete/(:num)', 'Products::delete/$1');
 
+$routes->get('/staffs', 'Staffs::index');
+$routes->get('/staffs/create', 'Staffs::create');
+$routes->get('/staffs/edit/(:num)', 'Staffs::edit/$1');
+$routes->post('/staffs/store', 'Staffs::store');
+$routes->put('/staffs/update/(:num)', 'Staffs::update/$1');
+$routes->post('/staffs/delete/(:num)', 'Staffs::delete/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -18,6 +18,12 @@
             <p>Products</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="<?= base_url('staffs') ?>" class="nav-link  <?= is_active('staffs') ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-user"></i>
+            <p>Staffs</p>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>
