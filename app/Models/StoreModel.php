@@ -33,4 +33,11 @@ class StoreModel extends Model
       ->select('staffs.*, stores.store_name')
       ->findAll();
   }
+
+  public function register()
+  {
+    return $this->join('stores', 'stores.id = registers.store_id', 'left')
+      ->select('registers.*, stores.store_name')
+      ->findAll();
+  }
 }

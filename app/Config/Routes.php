@@ -57,6 +57,13 @@ $routes->post('/staffs/store', 'Staffs::store');
 $routes->put('/staffs/update/(:num)', 'Staffs::update/$1');
 $routes->post('/staffs/delete/(:num)', 'Staffs::delete/$1');
 
+$routes->get('/registers', 'Registers::index');
+$routes->get('/registers/create', 'Registers::create');
+$routes->get('/registers/edit/(:num)', 'Registers::edit/$1');
+$routes->post('/registers/store', 'Registers::store');
+$routes->put('/registers/update/(:num)', 'Registers::update/$1');
+$routes->post('/registers/delete/(:num)', 'Registers::delete/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

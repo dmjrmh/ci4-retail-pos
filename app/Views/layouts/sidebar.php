@@ -24,6 +24,12 @@
             <p>Staffs</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="<?= base_url('registers') ?>" class="nav-link  <?= is_active('registers') ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-cash-register"></i>
+            <p>Registers</p>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

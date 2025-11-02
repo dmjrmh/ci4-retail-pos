@@ -20,7 +20,7 @@ class Staffs extends BaseController
   public function index()
   {
     $staffs = $this->staffModel
-      ->select('staffs.*, stores.store_name')              // ambil nama store
+      ->select('staffs.*, stores.store_name')
       ->join('stores', 'stores.id = staffs.store_id', 'left')
       ->orderBy('staffs.id', 'DESC')
       ->paginate(10);
@@ -113,7 +113,6 @@ class Staffs extends BaseController
 
     return redirect()->to('/staffs')->with('success', 'Staff updated successfully.');
   }
-
 
   public function delete($id)
   {
