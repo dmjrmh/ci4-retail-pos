@@ -20,6 +20,11 @@ class Products extends Migration
         'constraint'    => '50',
         'null'          => false,
       ],
+      'cover' => [
+        'type'          => 'VARCHAR',
+        'constraint'    => '255',
+        'null'          => true,
+      ],
       'unit' => [
         'type'          => 'VARCHAR',
         'constraint'    => '20',
@@ -35,10 +40,6 @@ class Products extends Migration
         'default'        => 0.00,
       ],
       'tax_included' => [
-        'type'           => 'BOOLEAN',
-        'default'        => true,
-      ],
-      'is_active' => [
         'type'           => 'BOOLEAN',
         'default'        => true,
       ],

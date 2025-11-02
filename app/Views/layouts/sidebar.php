@@ -1,0 +1,24 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <a href="<?= base_url() ?>" class="brand-link text-center">
+    <span class="brand-text font-weight-light">Retail POS</span>
+  </a>
+
+  <div class="sidebar">
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
+        <li class="nav-item">
+          <a href="<?= base_url('stores') ?>" class="nav-link <?= is_active('stores') ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-store"></i>
+            <p>Stores</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('products') ?>" class="nav-link  <?= is_active('products') ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-box"></i>
+            <p>Products</p>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</aside>

@@ -37,10 +37,6 @@ class Staffs extends Migration
         'type'          => 'VARCHAR',
         'constraint'    => '20',
       ],
-      'is_active' => [
-        'type'           => 'BOOLEAN',
-        'default'        => true,
-      ],
       'created_at' => [ 'type' => 'DATETIME', 'null' => true, ],
       'updated_at' => [ 'type' => 'DATETIME', 'null' => true, ],
       'deleted_at' => [ 'type' => 'DATETIME', 'null' => true, ]

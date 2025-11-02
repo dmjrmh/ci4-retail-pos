@@ -17,9 +17,9 @@ class ProductModel extends Model
       'name',
       'unit',
       'cost_price',
+      'cover',
       'selling_price',
       'tax_included',
-      'is_active'
     ];
 
     // Dates

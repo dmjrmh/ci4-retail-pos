@@ -18,7 +18,6 @@ class StoreModel extends Model
       'store_code',
       'address',
       'city',
-      'is_active'
     ];
 
     // Dates

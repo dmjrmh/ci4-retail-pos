@@ -34,10 +34,6 @@ class Stores extends Migration
           'constraint' => '50',
           'null' => true,
         ],
-        'is_active' => [
-          'type' => 'BOOLEAN',
-          'default' => true,
-        ],
         'created_at' => [
           'type' => 'DATETIME',
           'null' => true,
