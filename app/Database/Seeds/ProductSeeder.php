@@ -55,7 +55,7 @@ class ProductSeeder extends Seeder
         'unit'          => 'Sachet',
         'cost_price'    => 1500.00,
         'selling_price' => 2500.00,
-        'tax_included'  => false,
+        'tax_included'  => true,
         'cover'         => 'kopi-instant.jpg',
         'created_at'    => Time::now(),
         'updated_at'    => Time::now(),
