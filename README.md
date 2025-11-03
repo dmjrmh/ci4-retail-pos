@@ -66,20 +66,6 @@ graph TD
   Controllers --> Saleitems
 ```
 
-## ERD Sederhana (Mermaid)
-
-```mermaid
-erDiagram
-  stores ||--o{ registers : has
-  stores ||--o{ staffs : has
-  products ||--o{ promoitems : eligible_for
-  promos ||--o{ promoitems : contains
-  sales ||--o{ saleitems : has
-  stores ||--o{ sales : occurs_at
-  staffs ||--o{ sales : handled_by
-  registers ||--o{ sales : via
-```
-
 Gambar ERD:
 
 ![ERD](docs/images/erd.png)
