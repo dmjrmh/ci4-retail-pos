@@ -1,54 +1,164 @@
-# CodeIgniter 4 Framework
+# CI4 Retail POS
 
-## What is CodeIgniter?
+Aplikasi Point of Sale (POS) berbasis CodeIgniter 4 untuk mengelola toko, kasir (register), staf, produk, promo, dan penjualan.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Gambar struktur, ERD, dan panduan menjalankan ada di bawah. Kamu juga bisa menaruh screenshot/diagram tambahan di `docs/images/` dan README ini sudah menautkannya.
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## Fitur
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+- Manajemen toko, register, staf, dan produk
+- Setup promo dan item promo (buy X get Y, dsb.)
+- Pencatatan penjualan dan detail item
+- Laporan penjualan sederhana
+- API kecil untuk kebutuhan front-end (eligible promo, dsb.)
 
-The user guide corresponding to the latest version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+## Teknologi
 
-## Important Change with index.php
+- CodeIgniter 4.2.11 (PHP ^7.4 || ^8.0)
+- Composer (dependency manager)
+- Database: MySQL/MariaDB (disarankan)
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## Struktur Proyek
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+```text
+app/
+  Config/
+  Controllers/
+    Dashboard.php, Stores.php, Products.php, Staffs.php,
+    Registers.php, Promos.php, Promoitems.php, Sales.php, Reports.php
+  Database/
+    Migrations/  (skema tabel)
+    Seeds/       (data awal)
+  Models/
+    StoreModel.php, RegisterModel.php, StaffModel.php,
+    ProductModel.php, PromoModel.php, PromoitemModel.php,
+    SaleModel.php, SaleItemModel.php
+  Views/
+    layouts/, dashboard/, stores/, products/, staffs/,
+    registers/, promos/, promoitems/, sales/, reports/
+public/
+vendor/
+```
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## Diagram Arsitektur (Mermaid)
 
-## Repository Management
+```mermaid
+graph TD
+  UI[Views/Pages] --> Controllers
+  Controllers --> Models
+  Models --> DB[(Database)]
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+  subgraph Modules
+    Stores --- Registers
+    Stores --- Staffs
+    Products --- Promos
+    Promos --- Promoitems
+    Sales --- Saleitems
+  end
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+  Controllers --> Stores
+  Controllers --> Registers
+  Controllers --> Staffs
+  Controllers --> Products
+  Controllers --> Promos
+  Controllers --> Promoitems
+  Controllers --> Sales
+  Controllers --> Saleitems
+```
 
-## Contributing
+Gambar ERD:
 
-We welcome contributions from the community.
+![ERD](docs/images/erd.png)
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
+## Cara Menjalankan
 
-## Server Requirements
+Prasyarat:
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+- PHP ^7.4 / ^8.0 dengan ekstensi: intl, mbstring, json
+- Composer terpasang
+- Database MySQL/MariaDB siap (buat database kosong, misal: `ci4_pos`)
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+Langkah:
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+1) Clone & install dependency
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```bash
+git clone <repo-url> ci4-retail-pos
+cd ci4-retail-pos
+composer install
+```
+
+2) Salin file env dan atur konfigurasi
+
+```bash
+cp env .env
+```
+
+Edit `.env` minimal untuk database (contoh):
+
+```
+database.default.hostname = localhost
+database.default.database = ci4_retail_pos
+database.default.username = root
+database.default.password = 
+database.default.DBDriver = MySQLi
+app.baseURL = 'http://localhost:8080/'
+```
+
+3) Jalankan migrasi dan seeder
+
+```bash
+php spark migrate
+php spark db:seed DatabaseSeeder
+```
+
+4) Jalankan server pengembangan
+
+```bash
+php spark serve
+```
+
+Akses: `http://localhost:8080` (dashboard) atau lihat rute di bawah.
+
+## Rute Utama
+
+- `/` dan `/dashboard` → Dashboard
+- `/stores`, `/products`, `/staffs`, `/registers` → CRUD master data
+- `/promos`, `/promoitems` → Setup promo
+- `/sales` → Penjualan (index, create, show)
+- `/reports` → Laporan
+- API: `/api/promos/eligible`, `/api/registers/by-store`, `/api/staffs/by-store`
+
+Detail rute lihat `app/Config/Routes.php`.
+
+## Migrasi & Seeder
+
+Migrasi (skema utama):
+
+- `Stores`, `Registers`, `Staffs`, `Products`, `Promos`, `Promoitems`, `Sales`, `Saleitems`
+
+Seeder (data awal):
+
+- `DatabaseSeeder` memanggil: `StoreSeeder`, `ProductSeeder`, `StaffSeeder`, `RegisterSeeder`, `PromoSeeder`, `PromoItemSeeder`, `SalesSeeder`
+
+Jalankan ulang dari nol (opsional, hati-hati data hilang):
+
+```bash
+php spark migrate:refresh
+php spark db:seed DatabaseSeeder
+```
+
+## Perintah Spark Berguna
+
+- `php spark migrate` — menjalankan migrasi
+- `php spark migrate:rollback` — rollback batch terakhir
+- `php spark migrate:refresh` — reset & jalankan ulang semua migrasi
+- `php spark db:seed DatabaseSeeder` — seeding data awal
+- `php spark serve` — server dev lokal
+
+## Troubleshooting
+
+- Composer tidak ada: install Composer dari getcomposer.org
+- Ekstensi PHP (intl/mbstring) belum aktif: aktifkan di `php.ini`
+- Port 8080 terpakai: jalankan `php spark serve --port 8081`
+- Koneksi DB gagal: cek `.env` dan kredensial DB

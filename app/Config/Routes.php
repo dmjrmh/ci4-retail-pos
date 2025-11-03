@@ -35,7 +35,9 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-// $routes->get('/', 'Home::index');
+// Dashboard
+$routes->get('/', 'Dashboard::index');
+$routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/stores', 'Stores::index');
 $routes->get('/stores/create', 'Stores::create');
 $routes->get('/stores/edit/(:num)', 'Stores::edit/$1');
@@ -63,6 +65,36 @@ $routes->get('/registers/edit/(:num)', 'Registers::edit/$1');
 $routes->post('/registers/store', 'Registers::store');
 $routes->put('/registers/update/(:num)', 'Registers::update/$1');
 $routes->post('/registers/delete/(:num)', 'Registers::delete/$1');
+
+$routes->get('/promos', 'Promos::index');
+$routes->get('/promos/create', 'Promos::create');
+$routes->get('/promos/edit/(:num)', 'Promos::edit/$1');
+$routes->post('/promos/store', 'Promos::store');
+$routes->put('/promos/update/(:num)', 'Promos::update/$1');
+$routes->post('/promos/delete/(:num)', 'Promos::delete/$1');
+
+$routes->get('/promoitems', 'Promoitems::index');
+$routes->get('/promoitems/create', 'Promoitems::create');
+$routes->get('/promoitems/edit/(:num)', 'Promoitems::edit/$1');
+$routes->post('/promoitems/store', 'Promoitems::store');
+$routes->put('/promoitems/update/(:num)', 'Promoitems::update/$1');
+$routes->post('/promoitems/delete/(:num)', 'Promoitems::delete/$1');
+
+$routes->get('/sales', 'Sales::index');
+$routes->get('/sales/create', 'Sales::create');
+$routes->post('/sales/store', 'Sales::store');
+$routes->post('/sales', 'Sales::store');
+$routes->get('/sales/(:num)', 'Sales::show/$1');
+$routes->post('/sales/delete/(:num)', 'Sales::delete/$1');
+
+$routes->get('/reports', 'Reports::index');
+
+// API: eligible promos for a product at a store
+$routes->get('/api/promos/eligible', 'Promos::eligible');
+// API: registers by store
+$routes->get('/api/registers/by-store', 'Registers::byStore');
+// API: staffs by store
+$routes->get('/api/staffs/by-store', 'Staffs::byStore');
 
 /*
  * --------------------------------------------------------------------
