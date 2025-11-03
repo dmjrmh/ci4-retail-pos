@@ -64,6 +64,27 @@ $routes->post('/registers/store', 'Registers::store');
 $routes->put('/registers/update/(:num)', 'Registers::update/$1');
 $routes->post('/registers/delete/(:num)', 'Registers::delete/$1');
 
+$routes->get('/promos', 'Promos::index');
+$routes->get('/promos/create', 'Promos::create');
+$routes->get('/promos/edit/(:num)', 'Promos::edit/$1');
+$routes->post('/promos/store', 'Promos::store');
+$routes->put('/promos/update/(:num)', 'Promos::update/$1');
+$routes->post('/promos/delete/(:num)', 'Promos::delete/$1');
+
+$routes->get('/promoitems', 'Promoitems::index');
+$routes->get('/promoitems/create', 'Promoitems::create');
+$routes->get('/promoitems/edit/(:num)', 'Promoitems::edit/$1');
+$routes->post('/promoitems/store', 'Promoitems::store');
+$routes->put('/promoitems/update/(:num)', 'Promoitems::update/$1');
+$routes->post('/promoitems/delete/(:num)', 'Promoitems::delete/$1');
+
+$routes->get('/promostores', 'Promostores::index');
+$routes->get('/promostores/create', 'Promostores::create');
+$routes->get('/promostores/edit/(:num)', 'Promostores::edit/$1');
+$routes->post('/promostores/store', 'Promostores::store');
+$routes->put('/promostores/update/(:num)', 'Promostores::update/$1');
+$routes->post('/promostores/delete/(:num)', 'Promostores::delete/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

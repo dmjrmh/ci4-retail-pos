@@ -31,6 +31,38 @@
           </a>
         </li>
       </ul>
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+        <li class="nav-item has-treeview <?= (is_active('promos') || is_active('promoitems') || is_active('promostores')) ? 'menu-open' : '' ?>">
+          <a href="#" class="nav-link <?= (is_active('promos') || is_active('promoitems') || is_active('promostores')) ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-tags"></i>
+            <p>
+              Promos
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="<?= base_url('promos') ?>" class="nav-link <?= is_active('promos') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Promo List</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url('promoitems') ?>" class="nav-link <?= is_active('promoitems') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Promo Items</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url('promostores') ?>" class="nav-link <?= is_active('promostores') ? 'active' : '' ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Promo Stores</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </nav>
   </div>
 </aside>
