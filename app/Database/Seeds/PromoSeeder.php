@@ -54,6 +54,42 @@ class PromoSeeder extends Seeder
       'updated_at'     => $now,
     ];
 
+    // expired promos (examples that should not appear in sales eligibility)
+    $data[] = [
+      'store_id'       => $stores[0]['id'],
+      'name'           => 'Weekend Flash (Expired)',
+      'promo_code'     => 'PRM004',
+      'type'           => 'percent',
+      'value'          => 15,
+      'start_datetime' => '2023-05-20 00:00:00',
+      'end_datetime'   => '2023-05-30 23:59:59',
+      'created_at'     => $now,
+      'updated_at'     => $now,
+    ];
+    $data[] = [
+      'store_id'       => $stores[count($stores) > 1 ? 1 : 0]['id'],
+      'name'           => 'Ramadhan 2023 (Expired)',
+      'promo_code'     => 'PRM005',
+      'type'           => 'fixed',
+      'value'          => 10000,
+      'start_datetime' => '2023-03-23 00:00:00',
+      'end_datetime'   => '2023-04-21 23:59:59',
+      'created_at'     => $now,
+      'updated_at'     => $now,
+    ];
+    $data[] = [
+      'store_id'       => $stores[count($stores) > 2 ? 2 : 0]['id'],
+      'name'           => 'Early Bird Jan (Expired)',
+      'promo_code'     => 'PRM006',
+      'type'           => 'percent',
+      'value'          => 5,
+      'start_datetime' => '2023-01-01 00:00:00',
+      'end_datetime'   => '2023-01-15 23:59:59',
+      'created_at'     => $now,
+      'updated_at'     => $now,
+    ];
+
     $this->db->table('promos')->insertBatch($data);
   }
 }
+
