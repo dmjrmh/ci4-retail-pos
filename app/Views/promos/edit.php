@@ -23,6 +23,15 @@
       <input type="hidden" name="_method" value="PUT">
 
       <div class="form-group">
+        <label for="store_id">Store <span class="text-danger">*</span></label>
+        <select id="store_id" name="store_id" class="form-control" required>
+          <?php foreach(($stores ?? []) as $st): ?>
+            <option value="<?= $st['id'] ?>" <?= old('store_id', $promo['store_id'] ?? '') == $st['id'] ? 'selected' : '' ?>><?= esc($st['store_name']) ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+
+      <div class="form-group">
         <label for="name">Promo Name <span class="text-danger">*</span></label>
         <input type="text" id="name" name="name" class="form-control" value="<?= old('name', $promo['name'] ?? '') ?>" autofocus>
       </div>
@@ -48,6 +57,21 @@
         </small>
       </div>
 
+      <div class="table-responsive">
+        <label>Products</label>
+        <table class="table table-bordered" id="promo-products">
+          <thead>
+            <tr>
+              <th width="50">#</th>
+              <th>Product</th>
+              <th width="60"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <button type="button" class="btn btn-secondary btn-sm" id="add-product-row">+ Add Product</button>
+      </div>
+
       <div class="form-group">
         <label for="start_datetime">Start Promo <span class="text-danger">*</span></label>
         <input type="datetime-local" id="start_datetime" name="start_datetime" class="form-control" value="<?= old('start_datetime', $promo['start_datetime'] ?? '') ?>">
@@ -63,5 +87,31 @@
     </form>
   </div>
 </div>
+
+<script>
+  const products = <?= json_encode($products ?? []) ?>;
+  const selected = new Set(<?= json_encode($selected_product_ids ?? []) ?>);
+  function makeProdRow(idx, selectedId) {
+    const opts = products.map(p => `<option value='${p.id}' ${selectedId==p.id? 'selected':''}>${p.name}</option>`).join('');
+    return `<tr>
+      <td class="text-center">${idx+1}</td>
+      <td><select name="product_id[]" class="form-control">${opts}</select></td>
+      <td class="text-center"><button type="button" class="btn btn-danger btn-sm del-row">x</button></td>
+    </tr>`;
+  }
+  function refreshIdx(){
+    document.querySelectorAll('#promo-products tbody tr').forEach((tr,i)=>tr.children[0].textContent=i+1);
+  }
+  function hook(tr){ tr.querySelector('.del-row').addEventListener('click', ()=>{ tr.remove(); refreshIdx(); }); }
+  function addRow(withId){
+    const tbody = document.querySelector('#promo-products tbody');
+    const wrap = document.createElement('tbody');
+    wrap.innerHTML = makeProdRow(tbody.children.length, withId || '');
+    const tr = wrap.firstElementChild; tbody.appendChild(tr); hook(tr);
+  }
+  // seed rows for selected, or one empty
+  if (selected.size > 0) { selected.forEach(id => addRow(id)); } else { addRow(''); }
+  document.getElementById('add-product-row').addEventListener('click', ()=> addRow(''));
+</script>
 
 <?= $this->endSection() ?>

@@ -18,6 +18,7 @@
           <th class="text-center" width="50">#</th>
           <th class="text-center">Promo Name</th>
           <th class="text-center">Promo Code</th>
+          <th class="text-center">Store</th>
           <th class="text-center">Type</th>
           <th class="text-center">Value</th>
           <th class="text-center">Start Promo</th>
@@ -32,6 +33,7 @@
               <td class="text-center"><?= $index + 1 ?></td>
               <td><?= esc($promo['name']) ?></td>
               <td><?= esc($promo['promo_code']) ?></td>
+              <td class="text-center"><?= esc($promo['store_name'] ?? ('#'.$promo['store_id'])) ?></td>
               <td class="text-center"><?= ucfirst($promo['type']) ?></td>
               <td class="text-right">
                 <?= $promo['type'] === 'percent'

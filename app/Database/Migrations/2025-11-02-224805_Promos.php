@@ -10,6 +10,7 @@ class Promos extends Migration
   {
     $this->forge->addField([
       'id'           => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'auto_increment' => true],
+      'store_id'     => ['type' => 'INT', 'constraint' => 11, 'unsigned' => true, 'null' => false],
       'name'         => ['type' => 'VARCHAR', 'constraint' => 120, 'null' => false],
       'promo_code'   => ['type' => 'VARCHAR', 'constraint' => 30, 'null' => false],
       'type'         => ['type' => 'VARCHAR', 'constraint' => 10, 'null' => false], 
@@ -25,6 +26,7 @@ class Promos extends Migration
 
     $this->forge->addKey('id', true);
     $this->forge->addUniqueKey('promo_code');
+    $this->forge->addForeignKey('store_id', 'stores', 'id', 'CASCADE', 'CASCADE');
     $this->forge->createTable('promos');
   }
 

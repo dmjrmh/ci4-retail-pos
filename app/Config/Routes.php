@@ -78,12 +78,15 @@ $routes->post('/promoitems/store', 'Promoitems::store');
 $routes->put('/promoitems/update/(:num)', 'Promoitems::update/$1');
 $routes->post('/promoitems/delete/(:num)', 'Promoitems::delete/$1');
 
-$routes->get('/promostores', 'Promostores::index');
-$routes->get('/promostores/create', 'Promostores::create');
-$routes->get('/promostores/edit/(:num)', 'Promostores::edit/$1');
-$routes->post('/promostores/store', 'Promostores::store');
-$routes->put('/promostores/update/(:num)', 'Promostores::update/$1');
-$routes->post('/promostores/delete/(:num)', 'Promostores::delete/$1');
+$routes->get('/sales', 'Sales::index');
+$routes->get('/sales/create', 'Sales::create');
+$routes->post('/sales/store', 'Sales::store');
+$routes->post('/sales', 'Sales::store'); // API alternative
+$routes->get('/sales/(:num)', 'Sales::show/$1');
+$routes->post('/sales/delete/(:num)', 'Sales::delete/$1');
+
+// API: eligible promos for a product at a store
+$routes->get('/api/promos/eligible', 'Promos::eligible');
 
 /*
  * --------------------------------------------------------------------

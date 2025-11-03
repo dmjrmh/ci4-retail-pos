@@ -7,6 +7,12 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
         <li class="nav-item">
+          <a href="<?= base_url('sales') ?>" class="nav-link <?= is_active('sales') ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-receipt"></i>
+            <p>Sales</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="<?= base_url('stores') ?>" class="nav-link <?= is_active('stores') ? 'active' : '' ?>">
             <i class="nav-icon fas fa-store"></i>
             <p>Stores</p>
@@ -32,8 +38,8 @@
         </li>
       </ul>
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-        <li class="nav-item has-treeview <?= (is_active('promos') || is_active('promoitems') || is_active('promostores')) ? 'menu-open' : '' ?>">
-          <a href="#" class="nav-link <?= (is_active('promos') || is_active('promoitems') || is_active('promostores')) ? 'active' : '' ?>">
+        <li class="nav-item has-treeview <?= (is_active('promos') || is_active('promoitems')) ? 'menu-open' : '' ?>">
+          <a href="#" class="nav-link <?= (is_active('promos') || is_active('promoitems')) ? 'active' : '' ?>">
             <i class="nav-icon fas fa-tags"></i>
             <p>
               Promos
@@ -54,12 +60,7 @@
                 <p>Promo Items</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="<?= base_url('promostores') ?>" class="nav-link <?= is_active('promostores') ? 'active' : '' ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Promo Stores</p>
-              </a>
-            </li>
+            
           </ul>
         </li>
       </ul>

@@ -18,7 +18,7 @@ class PromoItemSeeder extends Seeder
     }
 
     $data = [];
-    $count = min(8, count($products));
+    $count = min(12, count($products));
     for ($i = 0; $i < $count; $i++) {
       $promoId   = $promos[$i % count($promos)]['id'];
       $productId = $products[$i]['id'];
@@ -31,8 +31,8 @@ class PromoItemSeeder extends Seeder
     }
 
     if (! empty($data)) {
+      // table name: promoitems (without underscore)
       $this->db->table('promoitems')->insertBatch($data);
     }
   }
 }
-
