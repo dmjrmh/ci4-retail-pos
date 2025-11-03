@@ -81,12 +81,16 @@ $routes->post('/promoitems/delete/(:num)', 'Promoitems::delete/$1');
 $routes->get('/sales', 'Sales::index');
 $routes->get('/sales/create', 'Sales::create');
 $routes->post('/sales/store', 'Sales::store');
-$routes->post('/sales', 'Sales::store'); // API alternative
+$routes->post('/sales', 'Sales::store');
 $routes->get('/sales/(:num)', 'Sales::show/$1');
 $routes->post('/sales/delete/(:num)', 'Sales::delete/$1');
 
 // API: eligible promos for a product at a store
 $routes->get('/api/promos/eligible', 'Promos::eligible');
+// API: registers by store
+$routes->get('/api/registers/by-store', 'Registers::byStore');
+// API: staffs by store
+$routes->get('/api/staffs/by-store', 'Staffs::byStore');
 
 /*
  * --------------------------------------------------------------------

@@ -122,4 +122,20 @@ class Registers extends BaseController
     session()->setFlashdata('message', "Register deleted successfully");
     return redirect()->to('/registers')->with('success', 'Register ' . $registerName . ' successfully deleted!');
   }
+
+  // API: get registers by store (JSON)
+  public function byStore()
+  {
+    $storeId = (int) ($this->request->getGet('store_id') ?? 0);
+    if ($storeId <= 0) {
+      return $this->response->setStatusCode(400)->setJSON(['error' => 'store_id is required']);
+    }
+    $rows = $this->registerModel
+      ->select('id, name, register_code')
+      ->where('store_id', $storeId)
+      ->where('deleted_at', null)
+      ->orderBy('name', 'ASC')
+      ->findAll();
+    return $this->response->setJSON(['data' => $rows]);
+  }
 }

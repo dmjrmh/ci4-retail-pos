@@ -128,4 +128,20 @@ class Staffs extends BaseController
     session()->setFlashdata('message', "Staff deleted successfully");
     return redirect()->to('/staffs')->with('success', 'Staff ' . $staffName . ' successfully deleted!');
   }
+
+  // API: get staffs by store (JSON)
+  public function byStore()
+  {
+    $storeId = (int) ($this->request->getGet('store_id') ?? 0);
+    if ($storeId <= 0) {
+      return $this->response->setStatusCode(400)->setJSON(['error' => 'store_id is required']);
+    }
+    $rows = $this->staffModel
+      ->select('id, name, staff_code, position')
+      ->where('store_id', $storeId)
+      ->where('deleted_at', null)
+      ->orderBy('name','ASC')
+      ->findAll();
+    return $this->response->setJSON(['data' => $rows]);
+  }
 }
