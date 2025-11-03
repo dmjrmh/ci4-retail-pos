@@ -88,7 +88,6 @@ $routes->get('/sales/(:num)', 'Sales::show/$1');
 $routes->post('/sales/delete/(:num)', 'Sales::delete/$1');
 
 $routes->get('/reports', 'Reports::index');
-$routes->get('/reports/export', 'Reports::export');
 
 // API: eligible promos for a product at a store
 $routes->get('/api/promos/eligible', 'Promos::eligible');
