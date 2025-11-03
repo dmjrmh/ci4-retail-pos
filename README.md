@@ -80,7 +80,9 @@ erDiagram
   registers ||--o{ sales : via
 ```
 
-> Kamu bisa mengganti diagram di atas dengan gambar ERD final milikmu. Taruh file-nya di `docs/images/erd.png` dan lihat bagian Lampiran Gambar.
+Gambar ERD:
+
+![ERD](docs/images/erd.png)
 
 ## Cara Menjalankan
 
@@ -174,13 +176,3 @@ php spark db:seed DatabaseSeeder
 - Ekstensi PHP (intl/mbstring) belum aktif: aktifkan di `php.ini`
 - Port 8080 terpakai: jalankan `php spark serve --port 8081`
 - Koneksi DB gagal: cek `.env` dan kredensial DB
-
-## Lampiran Gambar
-
-Letakkan gambar di folder `docs/images/` lalu gunakan path berikut di README:
-
-```markdown
-![ERD](docs/images/erd.png)
-```
-
-Jika kamu kirim gambar tabel/ERD, saya bisa update README untuk menautkan file final.
