@@ -35,7 +35,9 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-// $routes->get('/', 'Home::index');
+// Dashboard
+$routes->get('/', 'Dashboard::index');
+$routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/stores', 'Stores::index');
 $routes->get('/stores/create', 'Stores::create');
 $routes->get('/stores/edit/(:num)', 'Stores::edit/$1');
@@ -84,6 +86,9 @@ $routes->post('/sales/store', 'Sales::store');
 $routes->post('/sales', 'Sales::store');
 $routes->get('/sales/(:num)', 'Sales::show/$1');
 $routes->post('/sales/delete/(:num)', 'Sales::delete/$1');
+
+$routes->get('/reports', 'Reports::index');
+$routes->get('/reports/export', 'Reports::export');
 
 // API: eligible promos for a product at a store
 $routes->get('/api/promos/eligible', 'Promos::eligible');

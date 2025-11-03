@@ -7,6 +7,18 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
         <li class="nav-item">
+          <a href="<?= base_url('dashboard') ?>" class="nav-link <?= is_active('dashboard') ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>Dashboard</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?= base_url('reports') ?>" class="nav-link <?= is_active('reports') ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-chart-line"></i>
+            <p>Reports</p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="<?= base_url('sales') ?>" class="nav-link <?= is_active('sales') ? 'active' : '' ?>">
             <i class="nav-icon fas fa-receipt"></i>
             <p>Sales</p>
